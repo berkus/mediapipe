@@ -385,3 +385,12 @@ http_archive(
 
 load("@org_tensorflow//tensorflow:workspace.bzl", "tf_workspace")
 tf_workspace(tf_repo_name = "org_tensorflow")
+
+# emscripten
+
+http_archive(
+    name = "emscripten_toolchain",
+    url = "https://github.com/emscripten-core/emscripten/archive/2.0.13.tar.gz",
+    build_file = "@//third_party:emscripten_toolchain.BUILD",
+    strip_prefix = "emscripten-2.0.13",
+)
