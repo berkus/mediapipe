@@ -170,3 +170,21 @@ We welcome contributions. Please follow these
 
 We use GitHub issues for tracking requests and bugs. Please post questions to
 the MediaPipe Stack Overflow with a `mediapipe` tag.
+
+## Person Segmentation
+
+### Compile
+
+```
+bazel build -c opt --define MEDIAPIPE_DISABLE_GPU=1 mediapipe/examples/desktop/person_segmentation:person_segmentation_cpu
+```
+
+### Run
+
+```
+GLOG_logtostderr=1 bazel-bin/mediapipe/examples/desktop/person_segmentation/person_segmentation_cpu \
+  --calculator_graph_config_file=mediapipe/graphs/person_segmentation/person_segmentation_desktop_live.pbtxt
+```
+
+### Integrate Emscripten
+
