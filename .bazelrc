@@ -26,6 +26,15 @@ build:macos --cxxopt=-std=c++17
 build:macos --host_cxxopt=-std=c++17
 build:macos --copt=-w
 
+# emscripten_wasm
+build:emscripten_wasm --crosstool_top=//toolchain:emscripten
+build:emscripten_wasm --cpu=wasm
+build:emscripten_wasm --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
+build:emscripten_wasm --cxxopt="-flto"
+build:emscripten_wasm --host_cxxopt="-fno-exceptions"
+build:emscripten_wasm --host_cxxopt="-fomit-frame-pointer"
+build:emscripten_wasm --spawn_strategy=local
+
 # Sets the default Apple platform to macOS.
 build --apple_platform_type=macos
 

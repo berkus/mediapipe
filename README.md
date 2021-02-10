@@ -175,8 +175,25 @@ the MediaPipe Stack Overflow with a `mediapipe` tag.
 
 ### Compile
 
+#### C++
+
 ```
 bazel build -c opt --define MEDIAPIPE_DISABLE_GPU=1 mediapipe/examples/desktop/person_segmentation:person_segmentation_cpu
+```
+
+#### Web Assembly
+
+Check out [Emscripten](https://github.com/emscripten-core/emscripten/tree/2.0.13) in the same level as this root folder.
+
+```
+git clone https://github.com/emscripten-core/emscripten.git
+git checkout 2.0.13
+```
+
+Replace `$PATH_TO_EMSDK` in the `WORKSPACE` file with the absolute path to Emscripten. Then, run the following build command.
+
+```
+bazel build -c opt --config emscripten_wasm --define MEDIAPIPE_DISABLE_GPU=1 --action_env PYTHON_BIN_PATH=$(which python) mediapipe/examples/desktop/person_segmentation:person_segmentation_cpu
 ```
 
 ### Run
@@ -188,3 +205,14 @@ GLOG_logtostderr=1 bazel-bin/mediapipe/examples/desktop/person_segmentation/pers
 
 ### Integrate Emscripten
 
+* Add a target for emscripten in `bazel-mediapipe/external/cpuinfo/BUILD.bazel`:
+
+```
+cc_library(
+    name: "cpuinfo_impl"
+    srcs: select({
+      ...,
+      ":emscripten_wasm": COMMON_SRCS + EMSCRIPTEN_SRCS,
+    })
+)
+```

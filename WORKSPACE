@@ -218,6 +218,12 @@ new_local_repository(
     path = "C:\\opencv\\build",
 )
 
+new_local_repository(
+    name = "emscripten_wasm",
+    build_file = "@//third_party:emscripten_wasm.BUILD",
+    path = "$PATH_TO_EMSDK",
+)
+
 http_archive(
     name = "android_opencv",
     build_file = "@//third_party:opencv_android.BUILD",
