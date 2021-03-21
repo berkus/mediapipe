@@ -213,6 +213,13 @@ new_local_repository(
 )
 
 new_local_repository(
+    name = "wasm_opencv",
+    build_file = "@//third_party:opencv_macos.BUILD",
+    path = "/usr/local/opt/opencv@3",
+)
+
+
+new_local_repository(
     name = "windows_opencv",
     build_file = "@//third_party:opencv_windows.BUILD",
     path = "C:\\opencv\\build",
