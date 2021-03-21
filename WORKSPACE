@@ -221,7 +221,8 @@ new_local_repository(
 new_local_repository(
     name = "emscripten_wasm",
     build_file = "@//third_party:emscripten_wasm.BUILD",
-    path = "$PATH_TO_EMSDK",
+    path = "/Users/skarchebnyy/Repos/HopeThisHelps/TensorWASM/emsdk",
+    #path = "$PATH_TO_EMSDK",
 )
 
 http_archive(

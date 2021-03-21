@@ -21,7 +21,7 @@ def _impl(ctx):
         ),
         tool_path(
             name = "ar",
-            path = "/bin/false",
+            path = "emar.sh",
         ),
         tool_path(
             name = "cpp",
@@ -152,7 +152,7 @@ def _impl(ctx):
 
     return cc_common.create_cc_toolchain_config_info(
         ctx = ctx,
-        toolchain_identifier = "emscripten_wasm",
+        toolchain_identifier = "emscripten-wasm",
         host_system_name = "i686-unknown-linux-gnu",
         target_system_name = "wasm-unknown-emscripten",
         target_cpu = "wasm",
@@ -162,6 +162,7 @@ def _impl(ctx):
         abi_libc_version = "unknown",
         features = features,
         tool_paths = tool_paths,
+        cxx_builtin_include_directories = ["/Users/skarchebnyy/Repos/HopeThisHelps/TensorWASM/emsdk/upstream/"],
     )
 
 cc_toolchain_config = rule(
